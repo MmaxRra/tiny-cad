@@ -1,0 +1,6 @@
+.vs
+.git
+x64/
+[Dd]ebug/
+[Rr]elease/
+!tiny-cad/debug/
