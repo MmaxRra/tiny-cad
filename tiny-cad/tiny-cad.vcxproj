@@ -153,10 +153,12 @@
     <ClCompile Include="..\deps\nfd\src\nfd_win.cpp" />
     <ClCompile Include="..\deps\vendor_impl.cpp" />
     <ClCompile Include="debug\verify_deps.cpp" />
+    <ClCompile Include="engine\shader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug\verify_deps.h" />
+    <ClInclude Include="engine\shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
