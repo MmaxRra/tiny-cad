@@ -3,8 +3,8 @@
 
 ### Now!
 - [x] Implement shader loader
-- [ ] Frame timing (delta time, fps)
-- [ ] Window resize handling
+- [x] Frame timing (delta time, fps)
+- [x] Window resize handling
 - [ ] Input system (mouse, keyboard)
 - [ ] Implement a camera system (rotation, zoom, pan)
 - [ ] Render a starting grid/planes
