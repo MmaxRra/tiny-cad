@@ -1,11 +1,12 @@
 #pragma once
 
 #include <glad/glad.h>
+
 #include "../core/frameTimer.h"
 #include "../render/shader.h"
+#include "../core/input.h"
 
 class Window;
-
 class App {
 
 public:
@@ -26,6 +27,7 @@ private:
 
 	Window&    m_window;
 	FrameTimer m_timer;
+	Input      m_input;
 
 	ShaderProgram m_testShader { "assets/shaders/test" };
 	GLuint        m_emptyVao = 0;
