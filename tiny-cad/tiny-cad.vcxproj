@@ -152,13 +152,21 @@
     <ClCompile Include="..\deps\glad\src\glad.c" />
     <ClCompile Include="..\deps\nfd\src\nfd_win.cpp" />
     <ClCompile Include="..\deps\vendor_impl.cpp" />
+    <ClCompile Include="app\app.cpp" />
+    <ClCompile Include="core\window.cpp" />
+    <ClCompile Include="debug\gl_debug.cpp" />
     <ClCompile Include="debug\verify_deps.cpp" />
-    <ClCompile Include="engine\shader.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="render\shader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="app\app.h" />
+    <ClInclude Include="core\frameTimer.h" />
+    <ClInclude Include="core\platform.h" />
+    <ClInclude Include="core\window.h" />
+    <ClInclude Include="debug\gl_debug.h" />
     <ClInclude Include="debug\verify_deps.h" />
-    <ClInclude Include="engine\shader.h" />
+    <ClInclude Include="render\shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

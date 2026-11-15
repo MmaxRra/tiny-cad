@@ -18,18 +18,21 @@ public:
 			m_fps          = m_frames;
 			m_frameMs      = 1.000f / (float)std::max(m_frames, 1);
 			m_frames	   = 0;
+			
 			m_fpsTimer	   += 1.0;
+			if (now - m_fpsTimer >= 1.0) m_fpsTimer = now;
 			m_secondTicked = true;
 		}
 	}
 
 	float  dt()           const { return m_dt; }           // seconds since last frame
 	int    fps()          const { return m_fps; }          // updated once per second
-	float  frameMs()      const { return m_frameMs; }      // average ms per frame
 	double time()         const { return m_last; }         // seconds since start
+	float  frameMs()      const { return m_frameMs; }      // average ms per frame
 	bool   secondTicked() const { return m_secondTicked; } // true one frame per second
 
 private:
+
 	double m_last = glfwGetTime();
 	double m_fpsTimer = m_last;
 	float  m_dt = 0.0f;
@@ -37,5 +40,4 @@ private:
 	int    m_frames = 0;
 	int    m_fps = 0;
 	bool   m_secondTicked = false;
-
 };
