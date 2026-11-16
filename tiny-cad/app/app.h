@@ -2,7 +2,9 @@
 
 #include <glad/glad.h>
 
+#include "../render/axisLines.h"
 #include "../core/frameTimer.h"
+#include "../render/camera.h"
 #include "../render/shader.h"
 #include "../core/input.h"
 
@@ -26,8 +28,11 @@ private:
 	void everySecond();
 
 	Window&    m_window;
+	Camera	   m_camera;
+
 	FrameTimer m_timer;
 	Input      m_input;
+	AxisLines  m_axes;
 
 	ShaderProgram m_testShader { "assets/shaders/test" };
 	GLuint        m_emptyVao = 0;

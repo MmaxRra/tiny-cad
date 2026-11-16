@@ -5,8 +5,8 @@
 - [x] Implement shader loader
 - [x] Frame timing (delta time, fps)
 - [x] Window resize handling
-- [ ] Input system (mouse, keyboard)
-- [ ] Implement a camera system (rotation, zoom, pan)
+- [x] Input system (mouse, keyboard)
+- [x] Implement a camera system (rotation, zoom, pan)
 - [ ] Render a starting grid/planes
 - [ ] 3D render layer for parts
 - [ ] Implement basic shader for parts (to start with)
