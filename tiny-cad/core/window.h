@@ -55,4 +55,3 @@ private:
 	GLFWwindow* m_window = nullptr;
 	bool		m_vsync  = true;
 };
-
