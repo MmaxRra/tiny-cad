@@ -4,6 +4,12 @@ A small parametric CAD program written from scratch in C++ and OpenGL.
 Parts are built from a timeline of sketches and features (extrude, cut, revolve and so on), evaluated into a B-rep solid and tessellated for rendering, in the style of tools like Fusion 360.
 **Status:** early development. The application framework, camera and rendering groundwork are in place; modeling features are not implemented yet.
 
+## Contributing
+
+tiny-cad is a personal project and I'm not accepting pull requests at this time.
+You're welcome to fork it and experiment in your own copy, and bug reports
+or suggestions via issues are appreciated.
+
 ## Building
 
 Requirements:
