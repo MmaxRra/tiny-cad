@@ -1,8 +1,8 @@
 
 #include "axisLines.h"
 
-AxisLines::AxisLines(float length)
-{
+AxisLines::AxisLines(float length) {
+
 	const float L = length;
 
 	// position (x, y, z)     color (r, g, b)
@@ -29,14 +29,14 @@ AxisLines::AxisLines(float length)
 	glVertexArrayAttribBinding(m_vao, 1, 0);
 }
 
-AxisLines::~AxisLines()
-{
+AxisLines::~AxisLines() {
+
 	glDeleteVertexArrays(1, &m_vao);
 	glDeleteBuffers(1, &m_vbo);
 }
 
-void AxisLines::draw(const glm::mat4& viewProj) const
-{
+void AxisLines::draw(const glm::mat4& viewProj) const {
+
 	m_shader.setMat4("uViewProj", viewProj);
 	m_shader.use();
 

@@ -7,8 +7,8 @@ uniform mat4 uViewProj;
 
 out vec3 vColor;
 
-void main()
-{
+void main() {
+
     vColor = aColor;
     gl_Position = uViewProj * vec4(aPos, 1.0);
 }
