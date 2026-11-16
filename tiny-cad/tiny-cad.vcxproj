@@ -153,6 +153,7 @@
     <ClCompile Include="..\deps\nfd\src\nfd_win.cpp" />
     <ClCompile Include="..\deps\vendor_impl.cpp" />
     <ClCompile Include="app\app.cpp" />
+    <ClCompile Include="cad\primitives.cpp" />
     <ClCompile Include="core\input.cpp" />
     <ClCompile Include="core\window.cpp" />
     <ClCompile Include="debug\gl_debug.cpp" />
@@ -161,10 +162,14 @@
     <ClCompile Include="render\axisLines.cpp" />
     <ClCompile Include="render\camera.cpp" />
     <ClCompile Include="render\grid.cpp" />
+    <ClCompile Include="render\mesh.cpp" />
+    <ClCompile Include="render\partRenderer.cpp" />
     <ClCompile Include="render\shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="app\app.h" />
+    <ClInclude Include="cad\meshData.h" />
+    <ClInclude Include="cad\primitives.h" />
     <ClInclude Include="core\frameTimer.h" />
     <ClInclude Include="core\input.h" />
     <ClInclude Include="core\platform.h" />
@@ -174,6 +179,8 @@
     <ClInclude Include="render\axisLines.h" />
     <ClInclude Include="render\camera.h" />
     <ClInclude Include="render\grid.h" />
+    <ClInclude Include="render\mesh.h" />
+    <ClInclude Include="render\partRenderer.h" />
     <ClInclude Include="render\shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -10,7 +10,6 @@
 - [x] Implement a camera system (rotation, zoom, pan)
 - [x] Render a starting grid/planes
 - [ ] 3D render layer for parts
-- [ ] Implement basic shader for parts (to start with)
 - [ ] 2D batch renderer layer for UI
 
 ### Structures
