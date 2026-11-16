@@ -1,5 +1,6 @@
 
 ## Todo(s)
+- fix grid/camera conflict at 45*yaw..
 
 ### Now!
 - [x] Implement shader loader
@@ -7,7 +8,7 @@
 - [x] Window resize handling
 - [x] Input system (mouse, keyboard)
 - [x] Implement a camera system (rotation, zoom, pan)
-- [ ] Render a starting grid/planes
+- [x] Render a starting grid/planes
 - [ ] 3D render layer for parts
 - [ ] Implement basic shader for parts (to start with)
 - [ ] 2D batch renderer layer for UI

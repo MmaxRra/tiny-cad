@@ -67,7 +67,7 @@ void App::render(int width, int height) {
 	//m_testShader.use();
 
 	m_camera.setAspect((float)width / (float)height);
-	m_axes.draw(m_camera.getViewProjection());
+	m_grid.draw(m_camera);
 
 	glBindVertexArray(m_emptyVao);
 	glDrawArrays(GL_TRIANGLES, 0, 3);

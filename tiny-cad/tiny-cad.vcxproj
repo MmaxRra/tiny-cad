@@ -160,6 +160,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="render\axisLines.cpp" />
     <ClCompile Include="render\camera.cpp" />
+    <ClCompile Include="render\grid.cpp" />
     <ClCompile Include="render\shader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +173,7 @@
     <ClInclude Include="debug\verify_deps.h" />
     <ClInclude Include="render\axisLines.h" />
     <ClInclude Include="render\camera.h" />
+    <ClInclude Include="render\grid.h" />
     <ClInclude Include="render\shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
