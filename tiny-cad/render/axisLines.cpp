@@ -39,6 +39,7 @@ void AxisLines::draw(const glm::mat4& viewProj) const
 {
 	m_shader.setMat4("uViewProj", viewProj);
 	m_shader.use();
+
 	glBindVertexArray(m_vao);
 	glDrawArrays(GL_LINES, 0, 6);
 }

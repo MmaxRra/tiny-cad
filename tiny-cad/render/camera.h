@@ -48,13 +48,13 @@ private:
 
 	// define set up
 	static constexpr glm::vec3 WorldUp = glm::vec3(0.0f, 1.0f, 0.0f);
-	static constexpr float maxDistance = 100000.0f;
+	static constexpr float maxDistance = 20000.0f;
 	static constexpr float minDistance = 0.5f;
 	static constexpr float pitchLimit  = glm::radians(89.0f); // +-
 
 	static constexpr glm::vec3 DefaultTarget = glm::vec3(0.0f);
 	static constexpr float DefaultDistance   = 10.0f;
-	static constexpr float DefaultYaw        = 45.0f;
+	static constexpr float DefaultYaw        = 45.5f;
 	static constexpr float DefaultPitch      = 30.0f;
 
 	// point to orbit around
