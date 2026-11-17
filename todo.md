@@ -9,8 +9,8 @@
 - [x] Input system (mouse, keyboard)
 - [x] Implement a camera system (rotation, zoom, pan)
 - [x] Render a starting grid/planes
-- [ ] 3D render layer for parts
-- [ ] 2D batch renderer layer for UI
+- [x] 3D render layer for parts
+- [x] 2D batch renderer layer for UI
 
 ### Structures
 - [ ] Mesh structure (vertices, indices, gpu buffers, boundingbox)

@@ -12,6 +12,9 @@
 #include "../render/mesh.h"
 #include "../core/input.h"
 
+#include "../render/batch2d.h"
+#include "../ui/panelManager.h"
+
 class Window;
 class App {
 
@@ -41,6 +44,9 @@ private:
 
 	AxisLines    m_axes;
 	GridRenderer m_grid;
+
+	Batch2d      m_overlay;
+	PanelManager m_panels;
 
 	PartRenderer m_part;
 	Mesh         m_partMesh;

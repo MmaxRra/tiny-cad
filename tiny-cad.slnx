@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="tiny-cad/tiny-cad.vcxproj" />
+  <Project Path="tiny-cad/tiny-cad.vcxproj" Id="ef0bdae6-4285-4f51-a009-c6f04d51452e" />
 </Solution>

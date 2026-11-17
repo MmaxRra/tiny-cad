@@ -160,11 +160,14 @@
     <ClCompile Include="debug\verify_deps.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="render\axisLines.cpp" />
+    <ClCompile Include="render\batch2d.cpp" />
     <ClCompile Include="render\camera.cpp" />
     <ClCompile Include="render\grid.cpp" />
     <ClCompile Include="render\mesh.cpp" />
     <ClCompile Include="render\partRenderer.cpp" />
     <ClCompile Include="render\shader.cpp" />
+    <ClCompile Include="ui\panel.cpp" />
+    <ClCompile Include="ui\panelManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="app\app.h" />
@@ -177,11 +180,14 @@
     <ClInclude Include="debug\gl_debug.h" />
     <ClInclude Include="debug\verify_deps.h" />
     <ClInclude Include="render\axisLines.h" />
+    <ClInclude Include="render\batch2d.h" />
     <ClInclude Include="render\camera.h" />
     <ClInclude Include="render\grid.h" />
     <ClInclude Include="render\mesh.h" />
     <ClInclude Include="render\partRenderer.h" />
     <ClInclude Include="render\shader.h" />
+    <ClInclude Include="ui\panel.h" />
+    <ClInclude Include="ui\panelManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

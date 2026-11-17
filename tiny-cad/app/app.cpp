@@ -9,10 +9,14 @@ App::App(Window& window)
 	: m_window(window), 
 	  m_input(window), 
 	  m_axes{ 2.0f }, 
+	  m_overlay(),
 	  m_partMesh(makeBox(BoxSize)),
 	  m_partModel(glm::translate(glm::mat4(1.0f), BoxSize * 0.5f + glm::vec3(0.0f, 0.0f, -BoxSize.z)))
 {
-	glEnable(GL_DEPTH_TEST); 
+	glEnable(GL_DEPTH_TEST);
+
+	m_panels.addPanel(20.0f, 60.0f, 280.0f, 400.0f, { 0.21f, 0.22f, 0.25f, 0.95f });
+	m_panels.addPanel(340.0f, 120.0f, 240.0f, 180.0f, { 0.21f, 0.22f, 0.25f, 0.95f });
 }
 
 void App::run() {
@@ -75,6 +79,13 @@ void App::render(int width, int height) {
 
 	m_grid.draw(m_camera);
 	m_part.draw(m_camera, m_partMesh, m_partModel, glm::vec3(0.70f, 0.72f, 0.75f));
+	
+	int winW = 0, winH = 0;
+	glfwGetWindowSize(m_window.handle(), &winW, &winH);
+	
+	m_overlay.begin((float)winW, (float)winH);
+	m_panels.draw(m_overlay);
+	m_overlay.drawFrame();
 }
 
 void App::everySecond() {

@@ -53,7 +53,7 @@ private:
 	static constexpr float pitchLimit  = glm::radians(89.0f); // +-
 
 	static constexpr glm::vec3 DefaultTarget = glm::vec3(0.0f);
-	static constexpr float DefaultDistance   = 10.0f;
+	static constexpr float DefaultDistance   = 100.0f;
 	static constexpr float DefaultYaw        = 45.5f;
 	static constexpr float DefaultPitch      = 30.0f;
 
