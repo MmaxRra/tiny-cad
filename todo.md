@@ -3,6 +3,16 @@
 - fix grid/camera conflict at 45*yaw..
 
 ### Now!
+- [ ] Panel hit detection (mouse over panel / header)
+- [ ] PanelManage::update and wantsMouse (camera ignores input)
+- [ ] Drag panels by header
+- [ ] Bring clicked panel to front
+- [ ] Theme struct (colors, sizes) for panels
+- [ ] Texture support in Batch2d (UVs + white pixel)
+- [ ] Text rendering (font atlas + glyph quads)
+- [ ] First widget: button (hover / pressed / clicked)
+
+### Done!
 - [x] Implement shader loader
 - [x] Frame timing (delta time, fps)
 - [x] Window resize handling
