@@ -2,14 +2,15 @@
 ## Todo(s)
 
 ### Now!
-- [ ] Panel hit detection (mouse over panel / header)
-- [ ] PanelManage::update and wantsMouse (camera ignores input)
-- [ ] Drag panels by header
-- [ ] Bring clicked panel to front
+- [x] Panel hit detection (mouse over panel / header)
+- [x] PanelManage::update and wantsMouse (camera ignores input)
+- [x] Drag panels by header
+- [x] Bring clicked panel to front
 - [ ] Theme struct (colors, sizes) for panels
 - [ ] Texture support in Batch2d (UVs + white pixel)
 - [ ] Text rendering (font atlas + glyph quads)
 - [ ] First widget: button (hover / pressed / clicked)
+- [ ] Move font h/cpp into render/
 
 ### Done!
 - [x] Implement shader loader

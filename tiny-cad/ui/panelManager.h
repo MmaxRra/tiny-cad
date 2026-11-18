@@ -5,6 +5,7 @@
 #include "../render/batch2d.h"
 #include "panel.h"
 
+class Font;
 class PanelManager {
 
 public:
@@ -12,10 +13,10 @@ public:
 	PanelManager() = default;
 	~PanelManager() = default;
 
-	Panel& addPanel(float x, float y, float w, float h, const glm::vec4& color);
+	Panel& addPanel(float x, float y, float w, float h, const glm::vec4& color, const std::string& title);
 	
 	bool update(const UIInput input);
-	void draw(Batch2d& batch);
+	void draw(Batch2d& batch, const Font& font) const;
 
 private:
 

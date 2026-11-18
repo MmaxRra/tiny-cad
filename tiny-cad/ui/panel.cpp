@@ -1,18 +1,22 @@
 
 #include "panel.h"
+#include "../render/font.h"
 
-Panel::Panel(float x, float y, float w, float h, glm::vec4 aColor) {
+Panel::Panel(float x, float y, float w, float h, glm::vec4 aColor, std::string title) {
 
 	m_pos   = glm::vec2(x, y);
 	m_size  = glm::vec2(w, h);
-	m_Color = aColor;
+	m_title = title;
+	m_color = aColor;
 }
 
-void Panel::addElement(glm::vec2 pos, glm::vec2 size, std::function<void()> onClick) {
+void Panel::addElement(glm::vec2 pos, glm::vec2 size, const std::string& label, std::function<void()> onClick) {
 
 	Element e;
+
 	e.pos = pos;
 	e.size = size;
+	e.label = label;
 
 	e.onClick = std::move(onClick);
 	m_elements.push_back(std::move(e));
@@ -36,7 +40,7 @@ bool Panel::contains(glm::vec2 p) const {
 bool Panel::headerContains(glm::vec2 p) const {
 
 	return p.x >= m_pos.x && p.x < m_pos.x + m_size.x
-		&& p.y >= m_pos.y && p.y < m_pos.y + m_headerHeight;
+		&& p.y >= m_pos.y && p.y < m_pos.y + HeaderHeight;
 }
 
 int Panel::update(const UIInput& input, bool mouseOver) {
@@ -64,21 +68,36 @@ int Panel::update(const UIInput& input, bool mouseOver) {
 	return clicked;
 }
 
-void Panel::draw(Batch2d& batch) const {
+void Panel::draw(Batch2d& batch, const Font& font) const {
 
-	batch.rect(m_pos.x, m_pos.y, m_size.x, m_size.y, m_Color);
+	const glm::vec4 textColor{ 0.85f, 0.86f, 0.90f, 1.0f };
+
+	batch.rect(m_pos.x, m_pos.y, m_size.x, m_size.y, m_color);
 	
-	glm::vec4 headerColor = m_Color + glm::vec4(0.05f, 0.05f, 0.06f, 0.0f);
-	batch.rect(m_pos.x, m_pos.y, m_size.x, m_headerHeight, headerColor);
+	glm::vec4 headerColor = m_color + glm::vec4(0.05f, 0.05f, 0.06f, 0.0f);
+	batch.rect(m_pos.x, m_pos.y, m_size.x, HeaderHeight, headerColor);
+
+	float titleBaseline = m_pos.y + (HeaderHeight + font.size() * 0.7f) * 0.5f;
+	font.drawText(batch, m_pos.x + 10.0f, titleBaseline, m_title, textColor);
 
 	for (int i = 0; i < (int)m_elements.size(); ++i) {
-
+		
 		const Element& e = m_elements[i];
-
 		glm::vec4 c = e.color;
-		if (i == m_pressedElement && i == m_hoveredElement) c = e.pressedColor;
-		else if (i == m_hoveredElement) c = e.hoverColor;
 
-		batch.rect(m_pos.x + e.pos.x, m_pos.y + e.pos.y, e.size.x, e.size.y, c);
+		if (i == m_pressedElement && i == m_hoveredElement) c = e.pressedColor;
+		else if (i == m_hoveredElement)                     c = e.hoverColor;
+
+		float ex = m_pos.x + e.pos.x;
+		float ey = m_pos.y + e.pos.y;
+
+		batch.rect(ex, ey, e.size.x, e.size.y, c);
+
+		if (!e.label.empty()) {
+
+			float tx = ex + (e.size.x - font.textWidth(e.label)) * 0.5f;
+			float ty = ey + (e.size.y + font.size() * 0.7f) * 0.5f;
+			font.drawText(batch, tx, ty, e.label, textColor);
+		}
 	}
 }

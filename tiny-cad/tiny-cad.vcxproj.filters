@@ -72,6 +72,9 @@
     <ClCompile Include="ui\panelManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="render\font.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="app\app.h">
@@ -132,6 +135,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ui\element.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render\font.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

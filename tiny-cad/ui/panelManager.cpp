@@ -2,9 +2,9 @@
 #include "panelManager.h"
 #include <algorithm>
 
-Panel& PanelManager::addPanel(float x, float y, float w, float h, const glm::vec4& color) {
+Panel& PanelManager::addPanel(float x, float y, float w, float h, const glm::vec4& color, const std::string& title) {
 
-	return m_panels.emplace_back(x, y, w, h, color);
+	return m_panels.emplace_back(x, y, w, h, color, title);
 }
 
 bool PanelManager::update(const UIInput input) {
@@ -61,4 +61,4 @@ bool PanelManager::update(const UIInput input) {
 	return hovered != -1 || m_isDragging;
 }
 
-void PanelManager::draw(Batch2d& batch) { for (Panel& p : m_panels) { p.draw(batch); } }
+void PanelManager::draw(Batch2d& batch, const Font& font) const { for (const Panel& p : m_panels) { p.draw(batch, font); } }

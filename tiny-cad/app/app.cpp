@@ -3,8 +3,9 @@
 #include "../core/window.h"
 
 #include <glm/gtc/matrix_transform.hpp>
-#include <cstdio>
 #include <iostream>
+#include <string>
+#include <cstdio>
 
 App::App(Window& window) 
 	: m_window(window), 
@@ -16,11 +17,11 @@ App::App(Window& window)
 {
 	glEnable(GL_DEPTH_TEST);
 
-	Panel& testPanel = m_panels.addPanel(20.0f, 60.0f, 280.0f, 200.0f, { 0.21f, 0.22f, 0.25f, 0.95f });
-	testPanel.addElement({ 16.0f, 44.0f }, { 248.0f, 32.0f }, [this]() { testCallbackA(); });
-	testPanel.addElement({ 16.0f, 86.0f }, { 248.0f, 32.0f }, [this]() { testCallbackB(); });
+	Panel& testPanel = m_panels.addPanel(20.0f, 60.0f, 280.0f, 200.0f, { 0.21f, 0.22f, 0.25f, 0.95f }, "Test panel");
+	testPanel.addElement({ 16.0f, 44.0f }, { 248.0f, 32.0f }, "Button A", [this]() { testCallbackA(); });
+	testPanel.addElement({ 16.0f, 86.0f }, { 248.0f, 32.0f }, "Reset view", [this]() { testCallbackB(); });
 
-	m_panels.addPanel(340.0f, 120.0f, 240.0f, 180.0f, { 0.21f, 0.22f, 0.25f, 0.95f });
+	m_panels.addPanel(340.0f, 120.0f, 240.0f, 180.0f, { 0.21f, 0.22f, 0.25f, 0.95f }, "Second panel");
 }
 
 void App::run() {
@@ -101,7 +102,7 @@ void App::render(int width, int height) {
 	glfwGetWindowSize(m_window.handle(), &winW, &winH);
 	
 	m_overlay.begin((float)winW, (float)winH);
-	m_panels.draw(m_overlay);
+	m_panels.draw(m_overlay, m_font);
 	m_overlay.drawFrame();
 }
 

@@ -2,6 +2,7 @@
 
 #include <glm/glm.hpp>
 #include <functional>
+#include <string>
 
 struct Element {
 	glm::vec2 pos{ 0.0f };
@@ -12,6 +13,7 @@ struct Element {
 	glm::vec4 pressedColor{ 0.25f, 0.26f, 0.30f, 1.0f };
 
 	std::function<void()> onClick;   
+	std::string label;
 
 	bool contains(glm::vec2 p) const {
 
