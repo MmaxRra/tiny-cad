@@ -4,6 +4,7 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <cstdio>
+#include <iostream>
 
 App::App(Window& window) 
 	: m_window(window), 
@@ -15,7 +16,10 @@ App::App(Window& window)
 {
 	glEnable(GL_DEPTH_TEST);
 
-	m_panels.addPanel(20.0f, 60.0f, 280.0f, 400.0f, { 0.21f, 0.22f, 0.25f, 0.95f });
+	Panel& testPanel = m_panels.addPanel(20.0f, 60.0f, 280.0f, 200.0f, { 0.21f, 0.22f, 0.25f, 0.95f });
+	testPanel.addElement({ 16.0f, 44.0f }, { 248.0f, 32.0f }, [this]() { testCallbackA(); });
+	testPanel.addElement({ 16.0f, 86.0f }, { 248.0f, 32.0f }, [this]() { testCallbackB(); });
+
 	m_panels.addPanel(340.0f, 120.0f, 240.0f, 180.0f, { 0.21f, 0.22f, 0.25f, 0.95f });
 }
 
@@ -46,14 +50,27 @@ void App::run() {
 void App::update(float dt) {
 
 	glm::vec2 md = m_input.mouseDelta();
+
+	int winW = 0, winH = 0;
+	glfwGetWindowSize(m_window.handle(), &winW, &winH);
+
+	bool wantsMouse = m_panels.update({
+		m_input.mousePosition(),
+		{ (float)winW, (float)winH },
+		m_input.mousePressed(GLFW_MOUSE_BUTTON_LEFT),
+		m_input.mouseDown(GLFW_MOUSE_BUTTON_LEFT),
+		m_input.mouseReleased(GLFW_MOUSE_BUTTON_LEFT)
+	});
+
+	if (wantsMouse) return;
+
 	if (m_input.mouseDown(GLFW_MOUSE_BUTTON_MIDDLE)) {
 
 		if (m_input.shift()) {
 
-			int winW = 0, winH = 0;
-			glfwGetWindowSize(m_window.handle(), &winW, &winH);
 			m_camera.pan(md.x, md.y, (float)winH);
 		}
+
 		else {
 
 			const float sensitivity = 0.3f;
@@ -95,3 +112,6 @@ void App::everySecond() {
 
 	m_window.setTitle(title);
 }
+
+void App::testCallbackA() { std::printf("button A clicked\n"); }
+void App::testCallbackB() { m_camera.resetView(); std::printf("button B clicked: view reset\n"); }

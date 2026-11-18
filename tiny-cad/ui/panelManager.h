@@ -12,10 +12,18 @@ public:
 	PanelManager() = default;
 	~PanelManager() = default;
 
-	void addPanel(float x, float y, float w, float h, const glm::vec4& color);
+	Panel& addPanel(float x, float y, float w, float h, const glm::vec4& color);
+	
+	bool update(const UIInput input);
 	void draw(Batch2d& batch);
 
 private:
 
 	std::vector<Panel> m_panels;
+
+	int  m_interactiveIndex = -1;
+	bool m_isDragging = false;
+	bool m_isFocused  = false;
+
+	glm::vec2 m_dragOffset{ 0.0f };
 };

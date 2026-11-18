@@ -20,7 +20,6 @@ int main()
     Window window; if (!window.isValid()) return 1;
 
     #ifdef _DEBUG
-        // run verify
         VerifyDeps();
     #endif
 

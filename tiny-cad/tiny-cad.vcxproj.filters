@@ -128,5 +128,11 @@
     <ClInclude Include="ui\panelManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ui\uiInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\element.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

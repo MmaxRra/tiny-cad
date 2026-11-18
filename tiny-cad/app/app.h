@@ -51,4 +51,7 @@ private:
 	PartRenderer m_part;
 	Mesh         m_partMesh;
 	glm::mat4    m_partModel;
+
+	void testCallbackA();
+	void testCallbackB();
 };

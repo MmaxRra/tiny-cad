@@ -186,8 +186,10 @@
     <ClInclude Include="render\mesh.h" />
     <ClInclude Include="render\partRenderer.h" />
     <ClInclude Include="render\shader.h" />
+    <ClInclude Include="ui\element.h" />
     <ClInclude Include="ui\panel.h" />
     <ClInclude Include="ui\panelManager.h" />
+    <ClInclude Include="ui\uiInput.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
