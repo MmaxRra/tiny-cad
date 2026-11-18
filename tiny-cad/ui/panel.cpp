@@ -2,12 +2,11 @@
 #include "panel.h"
 #include "../render/font.h"
 
-Panel::Panel(float x, float y, float w, float h, glm::vec4 aColor, std::string title) {
+Panel::Panel(float x, float y, float w, float h, const std::string& title) {
 
 	m_pos   = glm::vec2(x, y);
 	m_size  = glm::vec2(w, h);
 	m_title = title;
-	m_color = aColor;
 }
 
 void Panel::addElement(glm::vec2 pos, glm::vec2 size, const std::string& label, std::function<void()> onClick) {
@@ -37,18 +36,18 @@ bool Panel::contains(glm::vec2 p) const {
 		&& p.y >= m_pos.y && p.y < m_pos.y + m_size.y;
 }
 
-bool Panel::headerContains(glm::vec2 p) const {
+bool Panel::headerContains(glm::vec2 p, const Theme& theme) const {
 
 	return p.x >= m_pos.x && p.x < m_pos.x + m_size.x
-		&& p.y >= m_pos.y && p.y < m_pos.y + HeaderHeight;
+		&& p.y >= m_pos.y && p.y < m_pos.y + theme.headerHeight;
 }
 
-int Panel::update(const UIInput& input, bool mouseOver) {
+int Panel::update(const UIInput& input, bool mouseOver, const Theme& theme) {
 
 	glm::vec2 local = input.mouse - m_pos;
 
 	m_hoveredElement = -1;
-	if (mouseOver && !headerContains(input.mouse)) {
+	if (mouseOver && !headerContains(input.mouse, theme)) {
 
 		for (int i = 0; i < (int)m_elements.size(); ++i) {
 
@@ -70,48 +69,50 @@ int Panel::update(const UIInput& input, bool mouseOver) {
 
 void Panel::setIcon(int element, const Icon& icon) { m_elements[element].icon = icon; }
 
-void Panel::draw(Batch2d& batch, const Font& font) const {
+void Panel::draw(Batch2d& batch, const Font& font, const Theme& theme) const {
 
-	const glm::vec4 textColor{ 0.85f, 0.86f, 0.90f, 1.0f };
+	batch.rect(m_pos.x, m_pos.y, m_size.x, m_size.y, theme.panelBg);
+	batch.rect(m_pos.x, m_pos.y, m_size.x, theme.headerHeight, theme.panelHeader);
 
-	batch.rect(m_pos.x, m_pos.y, m_size.x, m_size.y, m_color);
-	
-	glm::vec4 headerColor = m_color + glm::vec4(0.05f, 0.05f, 0.06f, 0.0f);
-	batch.rect(m_pos.x, m_pos.y, m_size.x, HeaderHeight, headerColor);
-
-	float titleBaseline = m_pos.y + (HeaderHeight + font.size() * 0.7f) * 0.5f;
-	font.drawText(batch, m_pos.x + 10.0f, titleBaseline, m_title, textColor);
+	float titleBaseline = m_pos.y + (theme.headerHeight + font.size() * 0.7f) * 0.5f;
+	font.drawText(batch, m_pos.x + 10.0f, titleBaseline, m_title, theme.text);
 
 	for (int i = 0; i < (int)m_elements.size(); ++i) {
 		
 		const Element& e = m_elements[i];
-		glm::vec4 c = e.color;
-		glm::vec4 ic = e.iconColor;
 
-		if (i == m_pressedElement && i == m_hoveredElement) c = e.pressedColor;
-		else if (i == m_hoveredElement)                     c = e.hoverColor;
+		glm::vec4 bg = theme.button;
+		glm::vec4 icon = theme.icon;
 
-		if (i == m_pressedElement && i == m_hoveredElement) { c = e.pressedColor; ic = e.iconPressedColor; }
-		else if (i == m_hoveredElement) { c = e.hoverColor;   ic = e.iconHoverColor; }
+		if (i == m_pressedElement && i == m_hoveredElement) { bg = theme.buttonPressed; icon = theme.iconPressed; }
+		else if (i == m_hoveredElement) { bg = theme.buttonHover;   icon = theme.iconHover; }
 
 		float ex = m_pos.x + e.pos.x;
 		float ey = m_pos.y + e.pos.y;
+		batch.rect(ex, ey, e.size.x, e.size.y, bg);   
 
-		batch.rect(ex, ey, e.size.x, e.size.y, c);
+		bool hasIcon = e.icon.texture != 0;
+		bool hasLabel = !e.label.empty();
 
-		if (!e.label.empty()) {
+		glm::vec2 iconSize = (e.icon.size.x > 0.0f) ? e.icon.size : glm::vec2(theme.iconSize);
 
-			float tx = ex + (e.size.x - font.textWidth(e.label)) * 0.5f;
-			float ty = ey + (e.size.y + font.size() * 0.7f) * 0.5f;
-			font.drawText(batch, tx, ty, e.label, textColor);
+		float iconRight = ex;
+		if (hasIcon) {
+
+			float ix = hasLabel ? ex + theme.padding : ex + (e.size.x - iconSize.x) * 0.5f;
+			float iy = ey + (e.size.y - iconSize.y) * 0.5f;
+
+			batch.texturedRect(ix, iy, iconSize.x, iconSize.y, e.icon.texture, e.icon.uvMin, e.icon.uvMax, icon);
+			iconRight = ix + iconSize.x;
 		}
 
-		if (e.icon.texture) {
-			float ix, iy = ey + (e.size.y - e.icon.size.y) * 0.5f;			  // vertically centered
-			if (e.label.empty()) ix = ex + (e.size.x - e.icon.size.x) * 0.5f; // icon only: centered
-			else                 ix = ex + 8.0f;                              // with label: on the left
-
-			batch.texturedRect(ix, iy, e.icon.size.x, e.icon.size.y, e.icon.texture, e.icon.uvMin, e.icon.uvMax, e.iconColor);
+		// label: centered if alone, right after the icon if there is one
+		if (hasLabel) {
+		
+			float tx = hasIcon ? iconRight + theme.iconLabelGap : ex + (e.size.x - font.textWidth(e.label)) * 0.5f;
+			
+			float ty = ey + (e.size.y + font.size() * 0.7f) * 0.5f;
+			font.drawText(batch, tx, ty, e.label, theme.text);
 		}
 	}
 }

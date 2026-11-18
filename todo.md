@@ -2,7 +2,7 @@
 ## Todo(s)
 
 ### Now!
-- [ ] Theme struct: colors, header height, padding, text color in one place
+- [x] Theme struct: colors, header height, padding, text color in one place
 - [ ] Panels/elements read their look from the theme
 - [ ] Panel names + PanelManager::isOpen / close / toggle
 - [ ] Close button in panel headers

@@ -15,16 +15,17 @@ App::App(Window& window)
 	  m_partMesh(makeBox(BoxSize)),
 	  m_partModel(glm::translate(glm::mat4(1.0f), BoxSize * 0.5f + glm::vec3(0.0f, 0.0f, -BoxSize.z)))
 {
+
 	glEnable(GL_DEPTH_TEST);
 
-	Panel& testPanel = m_panels.addPanel(20.0f, 60.0f, 280.0f, 200.0f, { 0.21f, 0.22f, 0.25f, 0.95f }, "Test panel");
+	Panel& testPanel = m_panels.addPanel(20.0f, 60.0f, 280.0f, 200.0f, "Test panel");
 	testPanel.addElement({ 16.0f, 44.0f }, { 248.0f, 32.0f }, "Button A", [this]() { testCallbackA(); });
 	testPanel.addElement({ 16.0f, 86.0f }, { 248.0f, 32.0f }, "Reset view", [this]() { testCallbackB(); });
 	
 	testPanel.addElement({ 16.0f, 128.0f }, { 36.0f, 36.0f }, "", [this]() { testCallbackB(); });
 	testPanel.setIcon(2, { m_iconReset.id(), { 0.0f, 0.0f }, { 1.0f, 1.0f }, { 20.0f, 20.0f } });
 
-	m_panels.addPanel(340.0f, 120.0f, 240.0f, 180.0f, { 0.21f, 0.22f, 0.25f, 0.95f }, "Second panel");
+	m_panels.addPanel(340.0f, 120.0f, 240.0f, 180.0f, "Second panel");
 }
 
 void App::run() {

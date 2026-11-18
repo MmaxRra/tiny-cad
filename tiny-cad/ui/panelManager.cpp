@@ -2,12 +2,12 @@
 #include "panelManager.h"
 #include <algorithm>
 
-Panel& PanelManager::addPanel(float x, float y, float w, float h, const glm::vec4& color, const std::string& title) {
+Panel& PanelManager::addPanel(float x, float y, float w, float h, const std::string& title) {
 
-	return m_panels.emplace_back(x, y, w, h, color, title);
+	return m_panels.emplace_back(x, y, w, h, title);
 }
 
-bool PanelManager::update(const UIInput input) {
+bool PanelManager::update(const UIInput& input) {
 
 	int hovered = -1;
 	for (int i = (int)m_panels.size() - 1; i >= 0; --i) {
@@ -26,7 +26,7 @@ bool PanelManager::update(const UIInput input) {
 		hovered = (int)m_panels.size() - 1;
 		m_interactiveIndex = hovered;
 
-		if (m_panels[hovered].headerContains(input.mouse)) {
+		if (m_panels[hovered].headerContains(input.mouse, m_theme)) {
 
 			m_isDragging = true;
 			m_dragOffset = m_panels[hovered].getPosition() - input.mouse;
@@ -48,7 +48,7 @@ bool PanelManager::update(const UIInput input) {
 	for (int i = 0; i < (int)m_panels.size(); ++i) {
 
 		bool mouseOver = (i == hovered) && !m_isDragging;
-		int e = m_panels[i].update(input, mouseOver);
+		int e = m_panels[i].update(input, mouseOver, m_theme);
 		if (e != -1) { clickedPanel = i; clickedElement = e; }
 	}
 
@@ -61,4 +61,4 @@ bool PanelManager::update(const UIInput input) {
 	return hovered != -1 || m_isDragging;
 }
 
-void PanelManager::draw(Batch2d& batch, const Font& font) const { for (const Panel& p : m_panels) { p.draw(batch, font); } }
+void PanelManager::draw(Batch2d& batch, const Font& font) const { for (const Panel& p : m_panels) { p.draw(batch, font, m_theme); } }

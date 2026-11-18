@@ -146,5 +146,8 @@
     <ClInclude Include="render\texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ui\theme.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

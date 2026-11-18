@@ -16,6 +16,7 @@
 #include "../render/batch2d.h"
 #include "../render/texture.h"
 #include "../render/font.h"
+#include "../ui/theme.h"
 
 class Window;
 class App {
@@ -51,8 +52,9 @@ private:
 	GridRenderer m_grid;
 
 	Batch2d      m_overlay;
-	PanelManager m_panels;
-
+	Theme		 m_theme = ThemeDark();
+	PanelManager m_panels{ m_theme };
+	
 	PartRenderer m_part;
 	Mesh         m_partMesh;
 	glm::mat4    m_partModel;

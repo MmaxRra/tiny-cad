@@ -193,6 +193,7 @@
     <ClInclude Include="ui\element.h" />
     <ClInclude Include="ui\panel.h" />
     <ClInclude Include="ui\panelManager.h" />
+    <ClInclude Include="ui\theme.h" />
     <ClInclude Include="ui\uiInput.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
