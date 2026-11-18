@@ -7,8 +7,8 @@
 - [x] Drag panels by header
 - [x] Bring clicked panel to front
 - [ ] Theme struct (colors, sizes) for panels
-- [ ] Texture support in Batch2d (UVs + white pixel)
-- [ ] Text rendering (font atlas + glyph quads)
+- [x] Texture support in Batch2d (UVs + white pixel)
+- [x] Text rendering (font atlas + glyph quads)
 - [ ] First widget: button (hover / pressed / clicked)
 - [ ] Move font h/cpp into render/
 

@@ -29,6 +29,7 @@ public:
 	int update(const UIInput& input, bool mouseOver);
 	void draw(Batch2d& batch, const Font& font) const;
 
+	void setIcon(int element, const Icon& icon);
 	const std::function<void()>& getOnClick(int element) const { return m_elements[element].onClick; }
 
 private:

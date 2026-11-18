@@ -75,6 +75,9 @@
     <ClCompile Include="render\font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="render\texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="app\app.h">
@@ -138,6 +141,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="render\font.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render\texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

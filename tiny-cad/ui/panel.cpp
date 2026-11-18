@@ -68,6 +68,8 @@ int Panel::update(const UIInput& input, bool mouseOver) {
 	return clicked;
 }
 
+void Panel::setIcon(int element, const Icon& icon) { m_elements[element].icon = icon; }
+
 void Panel::draw(Batch2d& batch, const Font& font) const {
 
 	const glm::vec4 textColor{ 0.85f, 0.86f, 0.90f, 1.0f };
@@ -84,9 +86,13 @@ void Panel::draw(Batch2d& batch, const Font& font) const {
 		
 		const Element& e = m_elements[i];
 		glm::vec4 c = e.color;
+		glm::vec4 ic = e.iconColor;
 
 		if (i == m_pressedElement && i == m_hoveredElement) c = e.pressedColor;
 		else if (i == m_hoveredElement)                     c = e.hoverColor;
+
+		if (i == m_pressedElement && i == m_hoveredElement) { c = e.pressedColor; ic = e.iconPressedColor; }
+		else if (i == m_hoveredElement) { c = e.hoverColor;   ic = e.iconHoverColor; }
 
 		float ex = m_pos.x + e.pos.x;
 		float ey = m_pos.y + e.pos.y;
@@ -98,6 +104,14 @@ void Panel::draw(Batch2d& batch, const Font& font) const {
 			float tx = ex + (e.size.x - font.textWidth(e.label)) * 0.5f;
 			float ty = ey + (e.size.y + font.size() * 0.7f) * 0.5f;
 			font.drawText(batch, tx, ty, e.label, textColor);
+		}
+
+		if (e.icon.texture) {
+			float ix, iy = ey + (e.size.y - e.icon.size.y) * 0.5f;			  // vertically centered
+			if (e.label.empty()) ix = ex + (e.size.x - e.icon.size.x) * 0.5f; // icon only: centered
+			else                 ix = ex + 8.0f;                              // with label: on the left
+
+			batch.texturedRect(ix, iy, e.icon.size.x, e.icon.size.y, e.icon.texture, e.icon.uvMin, e.icon.uvMax, e.iconColor);
 		}
 	}
 }

@@ -167,6 +167,7 @@
     <ClCompile Include="render\mesh.cpp" />
     <ClCompile Include="render\partRenderer.cpp" />
     <ClCompile Include="render\shader.cpp" />
+    <ClCompile Include="render\texture.cpp" />
     <ClCompile Include="ui\panel.cpp" />
     <ClCompile Include="ui\panelManager.cpp" />
   </ItemGroup>
@@ -188,6 +189,7 @@
     <ClInclude Include="render\mesh.h" />
     <ClInclude Include="render\partRenderer.h" />
     <ClInclude Include="render\shader.h" />
+    <ClInclude Include="render\texture.h" />
     <ClInclude Include="ui\element.h" />
     <ClInclude Include="ui\panel.h" />
     <ClInclude Include="ui\panelManager.h" />

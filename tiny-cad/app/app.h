@@ -14,6 +14,7 @@
 
 #include "../ui/panelManager.h"
 #include "../render/batch2d.h"
+#include "../render/texture.h"
 #include "../render/font.h"
 
 class Window;
@@ -36,7 +37,9 @@ private:
 	void everySecond();
 
 	static constexpr glm::vec3 BoxSize{ 40.0f, 20.0f, 30.0f };
-	Font m_font{ "Inter-Regular.ttf", 18.0f };
+
+	Font    m_font{ "Inter-Regular.ttf", 18.0f };
+	Texture m_iconReset{ "icons/test.png" };
 
 	Window&      m_window;
 	Camera	     m_camera;
